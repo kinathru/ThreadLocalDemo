@@ -11,4 +11,9 @@ public class Context
     {
         this.userName = userName;
     }
+
+    @Override public String toString()
+    {
+        return "Context{" + "userName='" + userName + '\'' + '}';
+    }
 }

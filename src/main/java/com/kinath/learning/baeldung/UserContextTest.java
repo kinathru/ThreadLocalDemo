@@ -20,5 +20,18 @@ public class UserContextTest
         t2.join();
 
         System.out.println(ShareMapWithUserContext.userContextPerUserId.size());
+
+        System.out.println("-------------------- Thread Local Implementation ----------------------- ");
+        ThreadLocalWithUserContext r3 = new ThreadLocalWithUserContext( 3 );
+        ThreadLocalWithUserContext r4 = new ThreadLocalWithUserContext( 4 );
+
+        Thread t3 = new Thread( r3 );
+        Thread t4 = new Thread( r4 );
+
+        t3.start();
+        t4.start();
+
+        t3.join();
+        t4.join();
     }
 }
