@@ -5,32 +5,30 @@ package com.kinath.learning;
  */
 public class DemoThread extends Thread
 {
-    private ThreadLocal<String> threadLocal;
-    private String normalField;
+    private String[] names = new String[]{"A", "B", "C", "D"};
+    private ThreadLocal<Integer> threadLocal = new ThreadLocal<Integer>();
+    private int normalField = 0;
+    private String randomString = null;
+    private ThreadLocal<String> threadLocalString = new ThreadLocal<String>();
 
-    @Override public void run()
+    public void run()
     {
-        System.out.println( "Value of Thread Local is : " + threadLocal.get() );
-        System.out.println( "Value of Normal Field is : " + normalField );
-    }
+        threadLocal.set( (int) ( Math.random() * 100D ) );
+        normalField = (int) ( Math.random() * 100D );
+        randomString = names[(int) Math.random() * 4];
+        threadLocalString.set( names[(int) Math.random() * 4] );
 
-    public ThreadLocal<String> getThreadLocal()
-    {
-        return threadLocal;
-    }
+        try
+        {
+            Thread.sleep( 2000 );
+        }
+        catch( InterruptedException e )
+        {
+        }
 
-    public void setThreadLocal( ThreadLocal<String> threadLocal )
-    {
-        this.threadLocal = threadLocal;
-    }
-
-    public String getNormalField()
-    {
-        return normalField;
-    }
-
-    public void setNormalField( String normalField )
-    {
-        this.normalField = normalField;
+        System.out.println( this.getName()+ " : " + threadLocal.get() );
+        System.out.println( this.getName()+ " : " + normalField );
+        System.out.println( this.getName()+ " : " + randomString );
+        System.out.println( this.getName()+ " : " + threadLocalString.get() );
     }
 }
