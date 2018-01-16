@@ -10,7 +10,10 @@ import java.util.concurrent.Future;
  */
 public class SquareCalculator
 {
-    private ExecutorService executor = Executors.newSingleThreadExecutor();
+    // Make the app single threaded
+    //private ExecutorService executor = Executors.newSingleThreadExecutor();
+    // Make the app multi threaded
+    private ExecutorService executor = Executors.newFixedThreadPool( 2 );
 
     public Future<Integer> calculate( final Integer input )
     {
