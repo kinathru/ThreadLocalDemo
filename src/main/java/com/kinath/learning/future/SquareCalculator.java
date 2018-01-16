@@ -39,4 +39,14 @@ public class SquareCalculator
             return input * input;
         } );*/
     }
+
+    public ExecutorService getExecutor()
+    {
+        return executor;
+    }
+
+    public void setExecutor( ExecutorService executor )
+    {
+        this.executor = executor;
+    }
 }

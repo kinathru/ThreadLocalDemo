@@ -10,7 +10,8 @@ public class SquareCalculatorMain
 {
     public static void main( String[] args )
     {
-        Future<Integer> calculate = new SquareCalculator().calculate( 10 );
+        SquareCalculator squareCalculator = new SquareCalculator();
+        Future<Integer> calculate = squareCalculator.calculate( 10 );
         while( !calculate.isDone() )
         {
             System.out.println("Calculating square");
@@ -36,6 +37,12 @@ public class SquareCalculatorMain
         catch( ExecutionException e )
         {
             e.printStackTrace();
+        }
+
+        if( !squareCalculator.getExecutor().isShutdown() )
+        {
+            System.out.println( "Shutting down executor" );
+            squareCalculator.getExecutor().shutdown();
         }
     }
 }
